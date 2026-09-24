@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "718422461869",
+    "project_id": "authfirebase-efdb9",
+    "storage_bucket": "authfirebase-efdb9.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:718422461869:android:c0fecb368ec2009780e524",
+        "android_client_info": {
+          "package_name": "Auth.Firebase"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQFQJptQMTjfSInGMk_d6KW0bF8Vy9OEA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:718422461869:android:b6bb1fdbb54b31b480e524",
+        "android_client_info": {
+          "package_name": "com.example.authfirebase"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQFQJptQMTjfSInGMk_d6KW0bF8Vy9OEA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

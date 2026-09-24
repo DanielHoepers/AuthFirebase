@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<incidents format="6" by="lint 9.3.2" type="partial_results">
+    <map id="UnsafeIntentLaunch">
+            <map id="unprotected">
+                <entry
+                    name="com.example.authfirebase.MainActivity"
+                    boolean="true"/>
+            </map>
+    </map>
+    <map id="UnusedResources">
+        <location id="R.string.app_name"
+            file="${:app*debug*MAIN*sourceProvider*0*resDir*0}/values/strings.xml"
+            line="3"
+            column="13"
+            startOffset="63"
+            endLine="3"
+            endColumn="28"
+            endOffset="78"/>
+        <entry
+            name="model"
+            string="color[text_primary(U),text_secondary(U),error_red(U),firebase_orange(U),firebase_blue(U),screen_background(U),success_green(U)],id[btnVoltar(U),editEmail(U),editSenha(U),editConfirmarSenha(U),btnExecutar(U),textResultado(U),textStatus(U),textEmail(U),textUid(U),btnCadastro(U),btnLogin(U),btnVerificarEmail(U),btnRecuperarSenha(U),btnToken(U),btnSair(U),textUsuario(U),btnEnviar(U)],layout[activity_cadastro(U),activity_login(U),activity_main(U),activity_recuperar_senha(U),activity_token(U),activity_verificar_email(U)],string[app_name(D)],style[Theme_AuthFirebase(U),Widget_Material3_Button_OutlinedButton(R),Theme_Material3_DayNight_NoActionBar(R)];18^0^1,19^0^1,1a^0^2^1^20,1b^0^1,1c^0^1,1d^0^1,1f^21^4^3^5;;;"/>
+    </map>
+
+</incidents>
