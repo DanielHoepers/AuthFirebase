@@ -1,42 +1,45 @@
-# Firebase Auth Lab
+# Firebase Lab
 
-Aplicativo Android em Java criado para demonstrar, de forma isolada, os principais recursos do Firebase Authentication.
+Aplicativo Android em Java para demonstrar Firebase Authentication e Cloud Functions.
 
-## Como instalar no projeto existente
+## Pré-requisitos
 
-1. Feche o Android Studio.
-2. Faça uma cópia da pasta `app` atual, caso queira guardar o projeto vazio.
-3. Extraia este pacote.
-4. Copie a pasta `app` deste pacote para a raiz do seu projeto `AuthFirebase`, substituindo a pasta existente.
-5. Substitua também o arquivo `build.gradle.kts` da raiz pelo arquivo incluído neste pacote.
-6. Abra novamente o projeto no Android Studio.
-7. Execute **File > Sync Project with Gradle Files**.
-8. Confirme no Firebase Console que **Authentication > Método de login > E-mail/senha** está habilitado.
-9. Execute o aplicativo no emulador ou celular.
+- Android Studio com suporte ao projeto Gradle existente.
+- Projeto Firebase `authfirebase-efdb9`, já configurado em `app/google-services.json`.
+- Método de login **E-mail/senha** habilitado no Firebase Authentication.
+- Para publicar a função: projeto no plano **Blaze**, Node.js 22 e Firebase CLI com acesso ao projeto.
 
-O arquivo `google-services.json` incluído já contém o cliente Android `com.example.authfirebase`.
+## Telas
 
-## Funcionalidades
+O aplicativo abre em `MainActivity`, com as opções **Autenticação** e **Função em nuvem**. `AuthActivity` mantém o painel e as telas de cadastro, login, verificação de e-mail, recuperação de senha e token JWT.
 
-- Cadastrar usuário.
-- Fazer login com e-mail e senha.
-- Enviar a verificação do e-mail.
-- Enviar a recuperação de senha.
-- Gerar, atualizar e visualizar o ID Token JWT.
-- Encerrar a sessão pelo painel principal.
+Na tela **Função em nuvem**, toque em **Executar função**. O app chama `saudacao`, uma função HTTPS callable em `us-central1`, e mostra a resposta recebida em uma notificação. Essa demonstração não exige login e não grava dados.
 
-## Organização para apresentação
+## Publicar a função
 
-Cada função está em uma Activity separada. Assim, é possível abrir uma tela no aplicativo e, em seguida, mostrar apenas a classe Java relacionada ao recurso:
+Na raiz do projeto, instale as dependências do backend e publique somente a função do exemplo:
 
-| Tela | Classe Java |
-| --- | --- |
-| Painel | `MainActivity.java` |
-| Cadastro | `CadastroActivity.java` |
-| Login | `LoginActivity.java` |
-| Verificação de e-mail | `VerificarEmailActivity.java` |
-| Recuperação de senha | `RecuperarSenhaActivity.java` |
-| Token JWT | `TokenActivity.java` |
+```sh
+npm --prefix functions install
+firebase login
+firebase deploy --only functions:saudacao --project authfirebase-efdb9
+```
+
+O arquivo `firebase.json` aponta para `functions/`. A função está em `functions/index.js`. Depois do deploy, execute o aplicativo em um dispositivo ou emulador com conexão à internet. Se a publicação falhar, confira o acesso à conta Firebase, o plano Blaze e as APIs exigidas pela CLI.
+
+Para conferir o backend sem acesso ao projeto remoto, inicie o emulador local e faça uma chamada callable em outro terminal:
+
+```sh
+npx firebase-tools emulators:start --only functions --project demo-authfirebase
+curl -X POST -H 'Content-Type: application/json' -d '{"data":{}}' http://127.0.0.1:5001/demo-authfirebase/us-central1/saudacao
+```
+
+## Verificação rápida
+
+1. Abra o app e confira as duas opções do menu.
+2. Entre em **Autenticação** e verifique que os fluxos existentes continuam disponíveis; Voltar retorna ao menu.
+3. Entre em **Função em nuvem** sem fazer login e toque em **Executar função**. A notificação deve mostrar `Olá do Firebase Cloud Functions!`.
+4. Com a rede desligada, repita a chamada e confira a mensagem de erro. O botão deve voltar a ficar habilitado.
 
 ## Observação sobre o token
 

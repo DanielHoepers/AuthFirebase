@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Firebase Auth Lab</string>
+    <string name="app_name">Firebase Lab</string>
 </resources>
-
