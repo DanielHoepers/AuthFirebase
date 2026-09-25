@@ -23,6 +23,8 @@ public class AuthActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_auth);
 
+        findViewById(R.id.btnVoltar).setOnClickListener(v -> finish());
+
         auth = FirebaseAuth.getInstance();
 
         textStatus = findViewById(R.id.textStatus);

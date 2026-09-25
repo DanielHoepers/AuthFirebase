@@ -16,6 +16,8 @@ public class CloudFunctionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cloud_function);
 
+        findViewById(R.id.btnVoltar).setOnClickListener(v -> finish());
+
         Button btnExecutar = findViewById(R.id.btnExecutarFuncao);
         btnExecutar.setOnClickListener(v -> {
             btnExecutar.setEnabled(false);
