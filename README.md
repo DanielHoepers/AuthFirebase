@@ -1,6 +1,6 @@
 # Firebase Lab
 
-Aplicativo Android em Java para demonstrar Firebase Authentication e Cloud Functions.
+Aplicativo Android em Java para demonstrar Firebase Authentication, Cloud Functions e Cloud Firestore.
 
 ## Pré-requisitos
 
@@ -11,9 +11,21 @@ Aplicativo Android em Java para demonstrar Firebase Authentication e Cloud Funct
 
 ## Telas
 
-O aplicativo abre em `MainActivity`, com as opções **Autenticação** e **Função em nuvem**. `AuthActivity` mantém o painel e as telas de cadastro, login, verificação de e-mail, recuperação de senha e token JWT.
+O aplicativo abre em `MainActivity`, com as opções **Autenticação**, **Função em nuvem** e **Tarefas (Firestore)**. `AuthActivity` mantém o painel e as telas de cadastro, login, verificação de e-mail, recuperação de senha e token JWT.
 
 Na tela **Função em nuvem**, toque em **Executar função**. O app chama `saudacao`, uma função HTTPS callable em `us-central1`, e mostra a resposta recebida em uma notificação. Essa demonstração não exige login e não grava dados.
+
+Na tela **Tarefas (Firestore)**, o usuário logado cria tarefas em `usuarios/{uid}/tarefas` e vê a lista atualizar em tempo real. Toque numa tarefa para concluí-la e segure para excluí-la. Sem login, a tela pede para entrar em **Autenticação** primeiro.
+
+## Configurar o Firestore
+
+No console, crie o banco em **Firestore Database** no modo de produção. Depois publique as regras de `firestore.rules`, que deixam cada usuário acessar só as próprias tarefas:
+
+```sh
+firebase deploy --only firestore:rules --project authfirebase-efdb9
+```
+
+Também é possível colar o conteúdo do arquivo na aba **Regras** do console e clicar em **Publicar**.
 
 ## Publicar a função
 
@@ -36,10 +48,12 @@ curl -X POST -H 'Content-Type: application/json' -d '{"data":{}}' http://127.0.0
 
 ## Verificação rápida
 
-1. Abra o app e confira as duas opções do menu.
+1. Abra o app e confira as três opções do menu.
 2. Entre em **Autenticação** e verifique que os fluxos existentes continuam disponíveis; Voltar retorna ao menu.
 3. Entre em **Função em nuvem** sem fazer login e toque em **Executar função**. A notificação deve mostrar `Olá do Firebase Cloud Functions!`.
 4. Com a rede desligada, repita a chamada e confira a mensagem de erro. O botão deve voltar a ficar habilitado.
+5. Faça login em **Autenticação**, volte ao menu e abra **Tarefas (Firestore)**. Crie uma tarefa e confira o documento no console; edite o título no console e veja o app atualizar sozinho.
+6. Entre com outro usuário e confira que a lista dele começa vazia.
 
 ## Observação sobre o token
 

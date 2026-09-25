@@ -15,5 +15,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(this, AuthActivity.class)));
         findViewById(R.id.btnFuncaoNuvem).setOnClickListener(v ->
                 startActivity(new Intent(this, CloudFunctionActivity.class)));
+        findViewById(R.id.btnTarefas).setOnClickListener(v ->
+                startActivity(new Intent(this, TarefasActivity.class)));
     }
 }
